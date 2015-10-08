@@ -1,0 +1,120 @@
+$menu-duration: 0.4s;
+$menu-easing: ease-out;
+
+.burger-menu {
+  position: relative;
+  width: 70px;
+  height: 60px;
+  cursor: pointer;
+  padding: 15px;
+  margin: -10px -15px;
+}
+
+.burger-click-region {
+  position: absolute;
+  left: 15px;
+  width: 40px;
+  height: 30px;
+}
+
+.burger-menu-piece {
+  display: block;
+  position: absolute;
+  width: 40px;
+  border-top: 6px solid #337ab7;
+  transform-origin: 50% 50%;
+  transition: transform $menu-duration $menu-easing, border 0.2s $menu-easing;
+  will-change: transition;
+  .burger-menu:hover & {
+    border-color: darken(#337ab7, 10%);
+    transition: transform 0.2s $menu-easing, border 0.2s $menu-easing;
+  }
+
+  &:nth-child(1) {
+    top: 0;
+    .burger-menu:hover & {
+      transform: translateY(-1px);
+    }
+  }
+
+  &:nth-child(2) {
+    top: 12px;
+    opacity: 1;
+    transition: transform $menu-duration $menu-easing, border 0.2s $menu-easing, opacity 0.1s linear $menu-duration / 2;
+  }
+
+  &:nth-child(3) {
+    top: 24px;
+    .burger-menu:hover & {
+      transform: translateY(1px);
+    }
+  }
+
+  .burger-active & {
+      &:nth-child(1) {
+        animation: burger-open-top $menu-duration $menu-easing forwards;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        transition: transform $menu-duration $menu-easing, opacity 0.1s linear $menu-duration / 2;
+      }
+
+      &:nth-child(3) {
+        animation: burger-open-bot $menu-duration $menu-easing forwards;
+      }
+  }
+
+  .closing & {
+    transition: transform $menu-duration $menu-easing, border 0.2s $menu-easing;
+    &:nth-child(1) {
+      animation: burger-close-top $menu-duration $menu-easing forwards;
+    }
+
+    &:nth-child(3) {
+      animation: burger-close-bot $menu-duration $menu-easing forwards;
+    }
+  }
+}
+
+@keyframes burger-open-top {
+  50% {
+    transform: translate3d(0, 12px, 0);
+  }
+  100% {
+    transform: translate3d(0, 12px, 0) rotate(45deg);
+  }
+}
+
+@keyframes burger-open-bot {
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+  100% {
+    transform: translate3d(0, -12px, 0) rotate(-45deg);
+  }
+}
+
+@keyframes burger-close-top {
+  0% {
+    transform: translate3d(0, 12px, 0) rotate(45deg);
+  }
+  50% {
+    transform: translate3d(0, 12px, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes burger-close-bot {
+  0% {
+    transform: translate3d(0, -12px, 0) rotate(-45deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}

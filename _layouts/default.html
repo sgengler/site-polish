@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+
+  {% include meta.html %}
+
+  <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+
+  <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+</head>
+
+<body>
+
+  <div class="wrapper {{page.slug}}">
+
+    <div class="drawer">
+      <div class="list-group">
+        <a href="#" class="list-group-item active">Cras justo odio</a>
+        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item">Morbi leo risus</a>
+        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item">Vestibulum at eros</a>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="container">
+        <ul class="nav nav-pills pull-right">
+          <li {%if page.isHome %}class="active" {% endif %}><a href="/">Home</a></li>
+          {% for post in site.posts reversed %}
+          <li {%if page.url contains post.url %}class="active" {% endif %}><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+
+        {%if page.isHome %}
+        <a href="#" id="burger">
+          <i class="fa"></i>
+        </a>
+        {% else %}
+        <div class="burger-menu">
+          <div class="burger-click-region">
+            <span class="burger-menu-piece"></span>
+            <span class="burger-menu-piece"></span>
+            <span class="burger-menu-piece"></span>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero__bg js--load-check"></div>
+      <div class="hero__content">
+        <div class="hero__header">
+          <h1>Example Page Header</h1>
+        </div>
+        <div class=" hero__links">
+          <ul class="list-unstyled">
+            <li class="link-1">
+              <button class="btn btn-lg btn-primary">Link 1</button>
+            </li>
+            <li class="link-2">
+              <button class="btn btn-lg btn-info">Link 2</button>
+            </li>
+            <li class="link-3">
+              <button class="btn btn-lg btn-warning">Link 3</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      {{ content }}
+    </div>
+
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          {% include svg-icons.html %}
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="/bower_components/waitForImages/dist/jquery.waitforimages.js"></script>
+  <script src="{{baseurl}}/js/main.js"></script>
+</body>
+
+</html>
