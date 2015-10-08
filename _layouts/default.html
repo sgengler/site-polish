@@ -40,11 +40,7 @@
           {% endfor %}
         </ul>
 
-        {%if page.isHome %}
-        <a href="#" id="burger">
-          <i class="fa"></i>
-        </a>
-        {% else %}
+        {%if page.slug contains 'demo-5'%}
         <div class="burger-menu">
           <div class="burger-click-region">
             <span class="burger-menu-piece"></span>
@@ -52,6 +48,10 @@
             <span class="burger-menu-piece"></span>
           </div>
         </div>
+        {% else %}
+        <a href="#" id="burger">
+          <i class="fa"></i>
+        </a>
         {% endif %}
       </div>
     </div>

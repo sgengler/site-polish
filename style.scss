@@ -69,13 +69,19 @@
     .menu-open & {
       margin: 0;
       transform: translateX(500px);
-      #burger {
-        i {
-          &:before {
-            content: "\f00d"
-          }
+    }
+  }
+
+  #burger {
+    .menu-open & {
+      i {
+        &:before {
+          content: "\f00d"
         }
       }
+    }
+    &:hover {
+      color: darken(#337ab7, 10%);
     }
   }
 }
