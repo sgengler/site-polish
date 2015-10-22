@@ -1,61 +1,10 @@
 ---
 ---
 
-//
-// IMPORTS
-//
 
 @import "variables";
 @import "base";
 @import "burger";
-
-.wrapper {
-  width: 100%;
-  transition: margin 0.4s;
-  position: relative;
-  .menu-open & {
-    margin-left: 500px;
-  }
-}
-
-
-.hero {
-  position: relative;
-  text-align: center;
-  background-size: cover;
-  width: 100%;
-  height: 400px;
-  &__content {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    margin-top: -80px;
-  }
-  &__header {
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  &.loaded {
-    opacity: 1;
-  }
-
-  &__links {
-    li {
-      display: inline-block;
-      margin: 0 10px;
-    }
-  }
-
-  &__bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: url(images/img1.jpg) no-repeat center center;
-  }
-}
-
 
 
 .demo-1 {
@@ -100,18 +49,20 @@
   }
 }
 
+@keyframes slideup {
+  from {
+    transform: translateY(30px);
+  }
+}
 
+@keyframes fadeIn {
+  from {opacity: 0}
+}
 
 .demo-3 {
   .hero {
     &__content {
-      transition: transform 1s, opacity 3s;
-      opacity: 0;
-      transform: translateY(30px);
-      .active & {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      animation: slideup 0.6s, fadeIn 2s;
     }
   }
 }
@@ -119,26 +70,38 @@
 
 $ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
+@keyframes slideup1 {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+@keyframes slideup2 {
+  0%, 10% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+@keyframes slideup3 {
+  0%, 20% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
 .demo-4 {
   .hero {
     &__content {
-      transition-timing-function: $ease-out-back;
+      animation: slideup 1s $ease-out-back, fadeIn 2s;
     }
     &__links {
       li {
-        transition: opacity 3s, transform 1s;
-        transition-timing-function: $ease-out-back;
-        opacity: 0;
-        transform: translateY(30px);
+        animation: slideup1 1s $ease-out-back;
         &:nth-child(2) {
-          transition-delay: 0.1s
+          animation-name: slideup2;
         }
         &:nth-child(3) {
-          transition-delay: 0.2s
-        }
-        .active & {
-          opacity: 1;
-          transform: translateY(0);
+          animation-name: slideup3;
         }
       }
     }
@@ -153,28 +116,28 @@ $ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 }
 
 
+@keyframes focusIn {
+  from {
+    opacity: 0;
+    -webkit-filter: blur(50px);
+  }
+}
+
+@keyframes slide-up-delay {
+  0%, 50% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
 .demo-5 {
   .hero {
     &__content {
-      transition: -webkit-filter 1s 0.4s, opacity 0.6s 0.4s;
-      -webkit-filter: blur(50px);
-      opacity: 0;
+      animation: focusIn 1.5s;
       will-change: -webkit-filter;
-      .active & {
-        -webkit-filter: blur(0);
-        opacity: 1;
-      }
     }
     &__links {
-        transition: transform 0.6s, opacity 0.8s;
-        transition-delay: 1s;
-        transition-timing-function: $ease-out-back;
-        opacity: 0;
-        transform: translateY(20px);
-      .active & {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        animation: slide-up-delay 2s $ease-out-back;
     }
   }
 }
