@@ -22,18 +22,17 @@
   <div class="wrapper {{page.slug}}">
 
     <div class="drawer">
-      <div class="list-group">
-        <a href="#" class="list-group-item active">Cras justo odio</a>
-        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
-      </div>
+      <ul class="nav">
+        <li {%if page.isHome %}class="active" {% endif %}><a href="{{site.baseurl}}/">Home</a></li>
+        {% for post in site.posts reversed %}
+        <li {%if page.url contains post.url %}class="active" {% endif %}><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
 
     <div class="header">
       <div class="container">
-        <ul class="nav nav-pills pull-right">
+        <ul class="nav nav-pills pull-right hidden-xs">
           <li {%if page.isHome %}class="active" {% endif %}><a href="{{site.baseurl}}/">Home</a></li>
           {% for post in site.posts reversed %}
           <li {%if page.url contains post.url %}class="active" {% endif %}><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
